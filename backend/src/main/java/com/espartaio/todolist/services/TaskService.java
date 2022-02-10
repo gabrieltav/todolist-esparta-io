@@ -22,5 +22,15 @@ public class TaskService {
 		Page<Task> list = repository.findAll(pageable);
 		return list.map(x -> new TaskDTO(x));
 	}
+	
+	@Transactional
+	public TaskDTO insert(TaskDTO dto) {
+		Task entity = new Task();
+		entity.setTitle(dto.getTitle());
+		entity.setDescription(dto.getDescription());
+		entity.setDeadLine(dto.getDeadLine());
+		entity = repository.save(entity);
+		return new TaskDTO(entity);
+	}
 
 }
