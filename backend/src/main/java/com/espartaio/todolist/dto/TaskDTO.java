@@ -1,6 +1,7 @@
 package com.espartaio.todolist.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
@@ -21,16 +22,16 @@ public class TaskDTO implements Serializable {
 	private String description;
 	
 	@NotBlank(message = "Campo requerido")
-	private Date deadLine;
+	private LocalDateTime deadLine;
 	
-	private Date createdAt;
-	private Date updatedAt;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	public TaskDTO() {
 		
 	}
 	
-	public TaskDTO(Long id, String title, String description, Date deadLine, Date createdAt, Date updatedAt) {
+	public TaskDTO(Long id, String title, String description, LocalDateTime deadLine, LocalDateTime createdAt, LocalDateTime updatedAt) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -72,27 +73,27 @@ public class TaskDTO implements Serializable {
 		this.description = description;
 	}
 
-	public Date getDeadLine() {
+	public LocalDateTime getDeadLine() {
 		return deadLine;
 	}
 
-	public void setDeadLine(Date deadLine) {
+	public void setDeadLine(LocalDateTime deadLine) {
 		this.deadLine = deadLine;
 	}
 
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 }

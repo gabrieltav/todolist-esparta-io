@@ -1,6 +1,7 @@
 package com.espartaio.todolist.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -31,21 +32,22 @@ public class Task implements Serializable {
 	private String description;
 	
 	@Column(nullable = false)
-	private Date deadLine;
+	private LocalDateTime deadLine;
 	
 	@CreationTimestamp
 	@Column(name = "created_at", nullable = false, updatable = false)
-	private Date createdAt;
+	private LocalDateTime createdAt;
 	
 	@UpdateTimestamp
 	@Column(name = "updated_at")
-	private Date updatedAt;
+	private LocalDateTime updatedAt;
 	
 	public Task() {
 		
 	}
 
-	public Task(Long id, String title, String description, Date deadLine, Date createdAt, Date updatedAt) {
+	public Task(Long id, String title, String description, LocalDateTime deadLine, LocalDateTime createdAt,
+			LocalDateTime updatedAt) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -53,6 +55,8 @@ public class Task implements Serializable {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+	
 
 	public Long getId() {
 		return id;
@@ -78,27 +82,27 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public Date getDeadLine() {
+	public LocalDateTime getDeadLine() {
 		return deadLine;
 	}
 
-	public void setDeadLine(Date deadLine) {
+	public void setDeadLine(LocalDateTime deadLine) {
 		this.deadLine = deadLine;
 	}
 
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public Date getUpdatedAt() {
+	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
 
-	public void setUpdatedAt(Date updatedAt) {
+	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
 
