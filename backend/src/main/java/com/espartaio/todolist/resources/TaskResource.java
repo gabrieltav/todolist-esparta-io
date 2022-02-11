@@ -32,6 +32,18 @@ public class TaskResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping(value = "/active")
+	public ResponseEntity<Page<TaskDTO>> findAllTodoListActive(Pageable pageable) {
+		Page<TaskDTO> listActive = service.findAllActive(pageable);
+		return ResponseEntity.ok().body(listActive);
+	}
+	
+	@GetMapping(value = "/closed")
+	public ResponseEntity<Page<TaskDTO>> findAllTodoListClosed(Pageable pageable) {
+		Page<TaskDTO> listClosed = service.findAllClosed(pageable);
+		return ResponseEntity.ok().body(listClosed);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
 		TaskDTO dto = service.findById(id);

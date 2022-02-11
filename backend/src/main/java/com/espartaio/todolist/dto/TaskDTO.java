@@ -1,7 +1,6 @@
 package com.espartaio.todolist.dto;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.validation.constraints.NotBlank;
@@ -22,31 +21,31 @@ public class TaskDTO implements Serializable {
 	private String description;
 	
 	@NotBlank(message = "Campo requerido")
-	private LocalDateTime deadLine;
+	private Date dead_line;
 	
-	private LocalDateTime createdAt;
-	private LocalDateTime updatedAt;
+	private Boolean task_finish = false;
 	
 	public TaskDTO() {
 		
 	}
-	
-	public TaskDTO(Long id, String title, String description, LocalDateTime deadLine, LocalDateTime createdAt, LocalDateTime updatedAt) {
+
+	public TaskDTO(Long id,
+			@Size(min = 5, max = 60, message = "Deve ter entre 5 e 60 caracteres") @NotBlank(message = "Campo requerido") String title,
+			@NotBlank(message = "Campo requerido") String description,
+			@NotBlank(message = "Campo requerido") Date dead_line, Boolean task_finish) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.deadLine = deadLine;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		this.dead_line = dead_line;
+		this.task_finish = task_finish;
 	}
 	
 	public TaskDTO(Task entity) {
 		this.id = entity.getId();
 		this.title = entity.getTitle();
 		this.description = entity.getDescription();
-		this.deadLine = entity.getDeadLine();
-		this.createdAt = entity.getCreatedAt();
-		this.updatedAt = entity.getUpdatedAt();
+		this.dead_line = entity.getDeadLine();
+		this.task_finish = entity.getTask_finish();
 	}
 
 	public Long getId() {
@@ -73,27 +72,19 @@ public class TaskDTO implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDateTime getDeadLine() {
-		return deadLine;
+	public Date getDeadLine() {
+		return dead_line;
 	}
 
-	public void setDeadLine(LocalDateTime deadLine) {
-		this.deadLine = deadLine;
+	public void setDeadLine(Date deadLine) {
+		this.dead_line = deadLine;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public Boolean getTask_finish() {
+		return task_finish;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setTask_finish(Boolean task_finish) {
+		this.task_finish = task_finish;
 	}
 }

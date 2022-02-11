@@ -1,7 +1,6 @@
 package com.espartaio.todolist.entities;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,10 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 
 @Entity
 @Table(name = "tb_tasks")
@@ -31,32 +26,22 @@ public class Task implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String description;
 	
-	@Column(nullable = false)
-	private LocalDateTime deadLine;
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Date dead_line;
 	
-	@CreationTimestamp
-	@Column(name = "created_at", nullable = false, updatable = false)
-	private LocalDateTime createdAt;
-	
-	@UpdateTimestamp
-	@Column(name = "updated_at")
-	private LocalDateTime updatedAt;
+	private Boolean task_finish;
 	
 	public Task() {
 		
 	}
 
-	public Task(Long id, String title, String description, LocalDateTime deadLine, LocalDateTime createdAt,
-			LocalDateTime updatedAt) {
+	public Task(Long id, String title, String description, Date dead_line, Boolean task_finish) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.deadLine = deadLine;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
+		this.dead_line = dead_line;
+		this.task_finish = task_finish;
 	}
-
-	
 
 	public Long getId() {
 		return id;
@@ -82,28 +67,20 @@ public class Task implements Serializable {
 		this.description = description;
 	}
 
-	public LocalDateTime getDeadLine() {
-		return deadLine;
+	public Date getDeadLine() {
+		return dead_line;
 	}
 
-	public void setDeadLine(LocalDateTime deadLine) {
-		this.deadLine = deadLine;
+	public void setDeadLine(Date dead_line) {
+		this.dead_line = dead_line;
 	}
 
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
+	public Boolean getTask_finish() {
+		return task_finish;
 	}
 
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
+	public void setTask_finish(Boolean task_finish) {
+		this.task_finish = task_finish;
 	}
 
 	@Override
@@ -125,7 +102,7 @@ public class Task implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Task [id=" + id + ", title=" + title + ", description=" + description + ", deadLine=" + deadLine
-				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+		return "Task [id=" + id + ", title=" + title + ", description=" + description + ", dead_line=" + dead_line
+				+ ", task_finish=" + task_finish + "]";
 	}
 }

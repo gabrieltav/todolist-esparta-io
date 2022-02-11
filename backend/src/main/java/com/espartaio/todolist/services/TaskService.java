@@ -32,6 +32,18 @@ public class TaskService {
 	}
 	
 	@Transactional(readOnly = true)
+	public Page<TaskDTO> findAllActive(Pageable pageable) {
+		Page<Task> active = repository.findAllActive(pageable);
+		return active.map(x -> new TaskDTO(x));
+	}
+	
+	@Transactional(readOnly = true)
+	public Page<TaskDTO> findAllClosed(Pageable pageable) {
+		Page<Task> closed = repository.findAllClosed(pageable);
+		return closed.map(x -> new TaskDTO(x));
+	}
+	
+	@Transactional(readOnly = true)
 	public TaskDTO findById(Long id) {
 		Optional<Task> obj = repository.findById(id);
 		Task entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
@@ -44,6 +56,7 @@ public class TaskService {
 		entity.setTitle(dto.getTitle());
 		entity.setDescription(dto.getDescription());
 		entity.setDeadLine(dto.getDeadLine());
+		entity.setTask_finish(dto.getTask_finish());
 		entity = repository.save(entity);
 		return new TaskDTO(entity);
 	}
@@ -55,6 +68,7 @@ public class TaskService {
 			entity.setTitle(dto.getTitle());
 			entity.setDescription(dto.getDescription());
 			entity.setDeadLine(dto.getDeadLine());
+			entity.setTask_finish(dto.getTask_finish());
 			entity = repository.save(entity);
 			return new TaskDTO(entity);
 		}
