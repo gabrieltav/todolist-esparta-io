@@ -16,7 +16,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 
 @Entity
-@Table(name = "tasks")
+@Table(name = "tb_tasks")
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 	

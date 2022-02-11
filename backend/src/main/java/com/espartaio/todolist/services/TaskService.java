@@ -1,5 +1,7 @@
 package com.espartaio.todolist.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,6 +12,7 @@ import com.espartaio.todolist.dto.TaskDTO;
 import com.espartaio.todolist.entities.Task;
 
 import com.espartaio.todolist.repositories.TaskRepository;
+import com.espartaio.todolist.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class TaskService {
@@ -22,6 +25,14 @@ public class TaskService {
 		Page<Task> list = repository.findAll(pageable);
 		return list.map(x -> new TaskDTO(x));
 	}
+	
+	@Transactional(readOnly = true)
+	public TaskDTO findById(Long id) {
+		Optional<Task> obj = repository.findById(id);
+		Task entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
+		return new TaskDTO(entity);
+	}
+
 	
 	@Transactional
 	public TaskDTO insert(TaskDTO dto) {
