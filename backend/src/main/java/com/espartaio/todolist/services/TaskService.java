@@ -2,6 +2,8 @@ package com.espartaio.todolist.services;
 
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,7 +34,6 @@ public class TaskService {
 		Task entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new TaskDTO(entity);
 	}
-
 	
 	@Transactional
 	public TaskDTO insert(TaskDTO dto) {
@@ -42,6 +43,21 @@ public class TaskService {
 		entity.setDeadLine(dto.getDeadLine());
 		entity = repository.save(entity);
 		return new TaskDTO(entity);
+	}
+	
+	@Transactional
+	public TaskDTO update(Long id, TaskDTO dto) {
+		try {
+			Task entity = repository.getOne(id);
+			entity.setTitle(dto.getTitle());
+			entity.setDescription(dto.getDescription());
+			entity.setDeadLine(dto.getDeadLine());
+			entity = repository.save(entity);
+			return new TaskDTO(entity);
+		}
+		catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " +id);
+		}
 	}
 
 }
