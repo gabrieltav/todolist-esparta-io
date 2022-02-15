@@ -1,0 +1,81 @@
+.container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    border: 1px solid #ffffff6b;
+}
+
+.container:nth-child(even){
+    background: #17332f44;
+}
+
+.info{
+    display: flex;
+    width: 75%;
+    align-items: center;
+    color: #17332f;
+}
+
+.actions{
+    display: flex;
+    width: 25%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.actions button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    margin: 0 .2em;
+    color: #fff;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.actions button:nth-child(1){
+    background: #135aaaa6;
+}
+
+.actions button:nth-child(2){
+    background: #aa1313a6;
+}
+
+.actions button:nth-child(1):hover{
+    background: #135aaa;
+}
+
+.actions button:nth-child(2):hover{
+    background: #ff0000a6;
+}
+
+
+.actions button svg{
+    font-size: 1.3em;
+}
+.info h1{
+    font-size: 1.3em;
+}
+
+.info p{
+    font-size: .9em;
+}
+
+.check{
+    width: 20px;
+    height: 20px;
+    margin: 0 .5em;
+}
+
+.check input{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}

@@ -1,9 +1,8 @@
+import Todos from 'Components/Todos';
 import './App.css';
 
 function App() {
-  return (
-    <h1>Hello TODOList</h1>
-  );
+  return <Todos />;
 }
 
 export default App;

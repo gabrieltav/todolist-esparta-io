@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.espartaio.todolist.dto.TaskDTO;
 import com.espartaio.todolist.services.TaskService;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/tasks")
 public class TaskResource {
@@ -27,7 +29,8 @@ public class TaskResource {
 	private TaskService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<TaskDTO>> findAll(Pageable pageable) {
+	public ResponseEntity<Page<TaskDTO>> findAll(
+			Pageable pageable) {
 		Page<TaskDTO> list = service.findAllPaged(pageable);
 		return ResponseEntity.ok().body(list);
 	}
